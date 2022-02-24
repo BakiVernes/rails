@@ -1,0 +1,39 @@
+<div style="margin-left: auto;
+            margin-right: auto;
+            margin-top: 7rem;
+            max-width: 768px;">
+  <%% if notice.present? %>
+    <p style="padding-top: 0.5rem;
+              padding-bottom: 0.5rem;
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+              background-color: rgb(240 253 244);
+              margin-bottom: 1.25rem;
+              color: #22c55e;
+              font-weight: 500;
+              text-decoration-line: none;
+              border-radius: 0.5rem;
+              display: inline-block;" id="notice">
+      <%%= notice %>
+    </p>
+  <%% end %>
+
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="font-weight: 700; font-size: 2.25rem; line-height: 2.5rem;"><%= human_name.pluralize %></h1>
+    <%%= link_to 'New <%= human_name.downcase %>', new_<%= singular_route_name %>_path,
+         style: "border-radius: 0.5rem;
+                 padding-top: 0.75rem;
+                 padding-bottom: 0.75rem;
+                 padding-left: 1.25rem;
+                 padding-right: 1.25rem;
+                 background-color: rgb(37 99 235);
+                 color: rgb(255 255 255);
+                 display: block;
+                 text-decoration: none;
+                 font-weight: 500;" %>
+  </div>
+
+  <div id="<%= plural_table_name %>" style="min-width: 100%;">
+    <%%= render @<%= plural_table_name %> %>
+  </div>
+</div>

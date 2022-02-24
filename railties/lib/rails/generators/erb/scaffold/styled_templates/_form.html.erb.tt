@@ -1,0 +1,113 @@
+<%%= form_with(model: <%= model_resource_name %>, html: { style: "display: contents;" }) do |form| %>
+  <%% if <%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation" style="background-color: rgb(239 68 68);
+    	                                 color: rgb(239 68 68);
+    	                                 padding-left: 0.75rem;
+                                       padding-right: 0.75rem;
+                                       padding-top: 0.5rem;
+                                       padding-bottom: 0.5rem;
+                                       font-weight: 500;
+                                       border-radius: 0.5rem;
+                                       margin-top: 0.75rem;">
+      <h2><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+
+      <ul>
+        <%% <%= singular_table_name %>.errors.each do |error| %>
+          <li><%%= error.full_message %></li>
+        <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+
+<% attributes.each do |attribute| -%>
+  <div style="margin-top: 1.25rem;
+              margin-bottom: 1.25rem;">
+<% if attribute.password_digest? -%>
+    <%%= form.label :password %>
+    <%%= form.password_field :password %>
+</div>
+
+<div style="margin-top: 1.25rem;
+            margin-bottom: 1.25rem;">
+    <%%= form.label :password_confirmation %>
+    <%%= form.password_field :password_confirmation,
+         style: "display: block;
+                 border-radius: 0.375rem;
+                 border-color: rgb(229 231 235);
+                 border-width: 1px;
+                 outline: 2px solid transparent;
+                 outline-offset: 2px;
+                 padding-left: 0.75rem;
+                 padding-right: 0.75rem;
+                 padding-top: 0.5rem;
+                 padding-bottom: 0.5rem;
+                 box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+                 margin-top: 0.5rem;
+                 width: 100%;" %>
+<% elsif attribute.attachments? -%>
+    <%%= form.label :<%= attribute.column_name %> %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true,
+         style: "display: block;
+                 border-radius: 0.375rem;
+                 border-color: rgb(229 231 235);
+                 outline: 2px solid transparent;
+                 outline-offset: 2px;
+                 padding-left: 0.75rem;
+                 padding-right: 0.75rem;
+                 padding-top: 0.5rem;
+                 padding-bottom: 0.5rem;
+                 box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+                 margin-top: 0.5rem;
+                 width: 100%;"%>
+<% else -%>
+    <%%= form.label :<%= attribute.column_name %> %>
+<% if attribute.field_type == :text_area -%>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, rows: 4,
+         style: "display: block;
+                 border-radius: 0.375rem;
+                 border-color: rgb(229 231 235);
+                 border-width: 1px;
+                 outline: 2px solid transparent;
+                 outline-offset: 2px;
+                 padding-left: 0.75rem;
+                 padding-right: 0.75rem;
+                 padding-top: 0.5rem;
+                 padding-bottom: 0.5rem;
+                 box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+                 margin-top: 0.5rem;
+                 width: 100%;"%>
+<% elsif attribute.field_type == :check_box -%>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, style: "display: block;margin-top: 0.5rem;height: 1.25rem; width: 1.25rem;" %>
+<% else -%>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>,
+         style: "display: block;
+                 border: 1px solid;
+                 border-radius: 0.375rem;
+                 border-color: rgb(229 231 235);
+                 outline: 2px solid transparent;
+                 border-width: 1px;
+                 outline-offset: 2px;
+                 padding-left: 0.75rem;
+                 padding-right: 0.75rem;
+                 padding-top: 0.5rem;
+                 padding-bottom: 0.5rem;
+                 box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+                 margin-top: 0.5rem;
+                 width: 100%;"%>
+<% end -%>
+<% end -%>
+  </div>
+
+<% end -%>
+  <div style="display: inline;">
+    <%%= form.submit style: "border-radius: 0.5rem;
+                             border: none;
+                             padding-top: 0.75rem;
+                             padding-bottom: 0.75rem;
+                             padding-left: 1.25rem;
+                             padding-right: 1.25rem;
+                             background-color: rgb(37 99 235);
+                             color: rgb(255 255 255);
+                             font-weight: 500;" %>
+  </div>
+<%% end %>

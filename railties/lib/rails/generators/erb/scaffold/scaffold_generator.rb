@@ -9,6 +9,12 @@ module Erb # :nodoc:
       include Rails::Generators::ResourceHelpers
 
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
+      class_option :styled, type: :boolean, desc: "Add styled templates."
+
+      def source_paths
+        return [File.expand_path("styled_templates", __dir__)] if options[:styled]
+        super
+      end
 
       def create_root_folder
         empty_directory File.join("app/views", controller_file_path)

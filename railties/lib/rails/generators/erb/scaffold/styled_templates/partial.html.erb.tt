@@ -1,0 +1,41 @@
+<div id="<%%= dom_id <%= singular_table_name %> %>">
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+  <p style="margin-top: 1.25rem;
+            margin-bottom: 1.25rem;">
+    <strong style="display: block; font-weight: 500; margin-bottom: 0.25rem;"><%= attribute.human_name %>:</strong>
+<% if attribute.attachment? -%>
+    <%%= link_to <%= singular_table_name %>.<%= attribute.column_name %>.filename, <%= singular_table_name %>.<%= attribute.column_name %> if <%= singular_table_name %>.<%= attribute.column_name %>.attached? %>
+<% elsif attribute.attachments? -%>
+    <%% <%= singular_table_name %>.<%= attribute.column_name %>.each do |<%= attribute.singular_name %>| %>
+      <div><%%= link_to <%= attribute.singular_name %>.filename, <%= attribute.singular_name %> %></div>
+    <%% end %>
+<% else -%>
+    <%%= <%= singular_table_name %>.<%= attribute.column_name %> %>
+<% end -%>
+  </p>
+
+<% end -%>
+  <%% if action_name != "show" %>
+    <%%= link_to "Show this <%= human_name.downcase %>", <%= singular_table_name %>,
+          style: "border-radius: 0.5rem;
+                 padding-top: 0.75rem;
+                 padding-bottom: 0.75rem;
+                 padding-left: 1.25rem;
+                 padding-right: 1.25rem;
+                 background-color: rgb(243 244 246);
+                 color: black;
+                 text-decoration: none;
+                 font-weight: 500;" %>
+    <%%= link_to 'Edit this <%= human_name.downcase %>', edit_<%= singular_table_name %>_path(<%= singular_table_name %>),
+         style: "border-radius: 0.5rem;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+                background-color: rgb(243 244 246);
+                color: black;
+                text-decoration: none;
+                font-weight: 500;" %>
+    <hr style="margin-top: 1.5rem">
+  <%% end %>
+</div>

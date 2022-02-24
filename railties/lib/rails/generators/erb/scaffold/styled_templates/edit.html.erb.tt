@@ -1,0 +1,28 @@
+<div style="margin-left: auto;
+            margin-right: auto;
+            margin-top: 7rem;
+            max-width: 768px;
+            font-family: sans-serif">
+  <h1 style="font-weight: 600; font-size: 2.25rem">Editing <%= human_name.downcase %></h1>
+
+  <%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
+
+  <%%= link_to "Show this <%= human_name.downcase %>", @<%= singular_table_name %>, style: "border-radius: 0.5rem;
+                                                                                            padding-top: 0.75rem;
+                                                                                            padding-bottom: 0.75rem;
+                                                                                            padding-left: 1.25rem;
+                                                                                            padding-right: 1.25rem;
+                                                                                            background-color: rgb(243 244 246);
+                                                                                            color: black;
+                                                                                            text-decoration: none;
+                                                                                            font-weight: 500;" %>
+  <%%= link_to "Back to <%= human_name.pluralize.downcase %>", <%= index_helper %>_path, style: "border-radius: 0.5rem;
+                                                                                                 padding-top: 0.75rem;
+                                                                                                 padding-bottom: 0.75rem;
+                                                                                                 padding-left: 1.25rem;
+                                                                                                 padding-right: 1.25rem;
+                                                                                                 background-color: rgb(243 244 246);
+                                                                                                 color: black;
+                                                                                                 text-decoration: none;
+                                                                                                 font-weight: 500;" %>
+</div>
